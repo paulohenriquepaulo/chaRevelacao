@@ -73,7 +73,7 @@
         <div id="story-text" class="text"></div>
         <div id="timer" class="timer">5</div>
         <div id="revelacao" class="revelacao"></div>
-        <audio id="audio" src="/Elizabeth Lima - Via Dolorosa.mp3" preload="auto"></audio> <!-- Adicione o arquivo de áudio -->
+        <audio id="audio" src="/audio/Elizabeth Lima - Via Dolorosa.mp3" preload="auto"></audio> <!-- Adicione o arquivo de áudio -->
     </div>
 
     <script>
@@ -119,8 +119,8 @@
                 alternarCorFundo(); // Alterna a cor de fundo
                 indexStory++;
                 setTimeout(() => {
-                    escreverHistoria(); // Continua a história após 3 segundos
-                }, 5000); // Exibe cada parte da história por 3 segundos
+                    escreverHistoria(); // Continua a história após 5 segundos
+                }, 5000); // Exibe cada parte da história por 5 segundos
             } else {
                 setTimeout(iniciarTimer, 3000); // Inicia o timer após a história
             }
@@ -183,7 +183,7 @@
                 revelacaoElement.textContent = "Eu sou um menino! meu nome será Pedro Joaquim!";
             } else {
                 document.body.style.backgroundColor = '#FFC0CB'; // Fundo rosa para menina
-                revelacaoElement.textContent = "Eu sou um menina! meu nome será Luiza Helena!";
+                revelacaoElement.textContent = "Eu sou uma menina! meu nome será Luiza Helena!";
             }
             revelacaoElement.style.display = 'block';
 
