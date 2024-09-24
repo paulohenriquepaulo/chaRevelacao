@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revelação do Bebê</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif; /* Fonte serifada */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            transition: background-color 1s ease;
+        }
+        .container {
+            text-align: center;
+        }
+        .text {
+            font-size: 36px; /* Tamanho do texto */
+            margin: 20px;
+            line-height: 1.5;
+        }
+        .timer {
+            font-size: 200px;
+            color: rgb(255, 72, 0);
+            display: none;
+        }
+        .revelacao {
+            font-size: 48px;
+            font-weight: bold;
+            display: none;
+        }
+        /* Estilos para os emojis */
+        .emoji {
+            position: absolute;
+            font-size: 32px;
+            opacity: 0;
+            animation: float 3s ease-in-out forwards;
+        }
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-300px) scale(2);
+            }
+        }
+        .start-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #4CAF50; /* Verde */
+            color: rgb(17, 17, 17);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .start-button:hover {
+            background-color: #0a0a0a; /* Verde mais escuro */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="start-button" id="start-button">Iniciar Revelação</button>
+        <div id="story-text" class="text"></div>
+        <div id="timer" class="timer">5</div>
+        <div id="revelacao" class="revelacao"></div>
+        <audio id="audio" src="/Elizabeth Lima - Via Dolorosa.mp3" preload="auto"></audio> <!-- Adicione o arquivo de áudio -->
+    </div>
+
+    <script>
+        const textoPreparacao = "Prepare-se para a grande revelação!";
+        const story = [
+            "✨ Era uma vez, dentro do meu pequeno mundo, dois corações cheios de amor e expectativa... ❤️",
+            "🌟 Eles estavam prestes a receber o maior presente de todos: eu! 🎁",
+            "🎀 Mas será que serei uma princesa corajosa, trazendo brilho e magia para a vida deles? 👑",
+            "⚔️ Ou talvez um príncipe encantado, pronto para proteger o nosso reino? 🏰",
+            "🤔 As perguntas sempre surgem, e a ansiedade cresce a cada dia que passa... ⏳",
+            "🤗 Mas agora, chegou a hora da grande revelação! Preparem-se para descobrir quem eu sou! 🎉"
+        ];
+        const storyContainer = document.getElementById('story-text');
+        let indexStory = 0;
+        let corAtual = 0; // 0 para azul e 1 para rosa
+
+        // Função para iniciar a exibição do texto de preparação
+        function iniciarPreparacao() {
+            storyContainer.textContent = textoPreparacao;
+            setTimeout(() => {
+                storyContainer.style.opacity = '0'; // Faz o texto desaparecer
+                setTimeout(iniciarHistoria, 1000); // Inicia a história após 1 segundo
+            }, 3000); // Exibe o texto por 3 segundos
+        }
+
+        // Função para alternar a cor de fundo
+        function alternarCorFundo() {
+            corAtual = 1 - corAtual; // Alterna entre 0 e 1
+            document.body.style.backgroundColor = corAtual === 0 ? '#87CEEB' : '#FFC0CB'; // Azul claro e rosa
+        }
+
+        // Função para iniciar a exibição da história
+        function iniciarHistoria() {
+            storyContainer.style.opacity = '1'; // Reinicia a opacidade
+            storyContainer.style.display = 'block'; // Garante que a história será exibida
+            escreverHistoria(); // Inicia a exibição da história
+        }
+
+        // Função para exibir o texto da história com suspense
+        function escreverHistoria() {
+            if (indexStory < story.length) {
+                storyContainer.textContent = story[indexStory];
+                alternarCorFundo(); // Alterna a cor de fundo
+                indexStory++;
+                setTimeout(() => {
+                    escreverHistoria(); // Continua a história após 3 segundos
+                }, 5000); // Exibe cada parte da história por 3 segundos
+            } else {
+                setTimeout(iniciarTimer, 3000); // Inicia o timer após a história
+            }
+        }
+
+        // Função para iniciar o timer de 5 segundos
+        function iniciarTimer() {
+            const timerElement = document.getElementById('timer');
+            timerElement.style.display = 'block';
+            storyContainer.style.display = 'none'; // Esconde o texto da história
+            let timeLeft = 5;
+
+            const countdown = setInterval(function() {
+                timerElement.textContent = timeLeft;
+                timeLeft--;
+                if (timeLeft < 0) {
+                    clearInterval(countdown);
+                    revelarSexo();
+                }
+            }, 1000); 
+        }
+
+        // Função para criar emojis de festa e corações
+        function criarEmojis(sexo) {
+            const emojisFesta = ['🎉', '🎊'];
+            const emojisCoracao = sexo === 'menino' ? '💙' : '❤️'; // Coração azul para menino e vermelho para menina
+
+            for (let i = 0; i < 100; i++) {
+                const emoji = document.createElement('div');
+                emoji.classList.add('emoji');
+
+                // Alterna entre emojis de festa e coração
+                if (Math.random() > 0.5) {
+                    emoji.textContent = emojisCoracao;
+                } else {
+                    emoji.textContent = emojisFesta[Math.floor(Math.random() * emojisFesta.length)];
+                }
+
+                document.body.appendChild(emoji);
+
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                emoji.style.left = `${x}px`;
+                emoji.style.top = `${y}px`;
+                emoji.style.animationDuration = `${Math.random() * 3 + 3}s`; // Duração da animação aleatória entre 2 e 5 segundos
+
+                // Remove emoji após animação
+                setTimeout(() => emoji.remove(), 5000);
+            }
+        }
+
+        // Função para revelar o sexo e o nome
+        function revelarSexo() {
+            document.getElementById('timer').style.display = 'none';
+            const revelacaoElement = document.getElementById('revelacao');
+            
+            const sexo = "menina"; // Altere para "menina" se for o caso
+            if (sexo === "menino") {
+                document.body.style.backgroundColor = '#ADD8E6'; // Fundo azul claro para menino
+                revelacaoElement.textContent = "Eu sou um menino! meu nome será Pedro Joaquim!";
+            } else {
+                document.body.style.backgroundColor = '#FFC0CB'; // Fundo rosa para menina
+                revelacaoElement.textContent = "Eu sou um menina! meu nome será Luiza Helena!";
+            }
+            revelacaoElement.style.display = 'block';
+
+            criarEmojis(sexo); // Chama a função para criar os emojis com base no sexo
+        }
+
+        // Função para iniciar a narração e a história
+        function iniciarRevelacao() {
+            document.getElementById('audio').play(); // Reproduz o áudio
+            document.getElementById('start-button').style.display = 'none'; // Esconde o botão
+            iniciarPreparacao(); // Inicia a exibição do texto de preparação
+        }
+
+        // Adiciona o evento de clique ao botão
+        document.getElementById('start-button').onclick = iniciarRevelacao;
+
+    </script>
+
+</body>
+</html>
