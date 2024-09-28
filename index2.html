@@ -43,6 +43,7 @@
             text-decoration: none;
             margin: 0 10px;
             font-size: 18px;
+
         }
 
         .content {
@@ -55,31 +56,35 @@
         }
 
         .logo-center {
-            max-width: 100%;
-            height: auto;
+            max-width: 850px;
             margin: 40px;
         }
 
+
+
         .cards {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             padding: 30px;
-        }
+  
 
+        }
         .cardImagem {
-            flex: 1 1 250px; /* Ajusta o tamanho das imagens */
+            width: 65px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 10px; /* Espaçamento entre as imagens */
+            margin-right : 120px;
+            margin-left: 120px;
+            
+            
         }
 
         .cardsimg {
-            width: 100%;
-            max-width: 280px; /* Limita a largura máxima */
-            height: auto; /* Mantém a proporção */
+           width: 280px;
+
+
         }
 
         .carousel-controls {
@@ -97,6 +102,7 @@
             cursor: pointer;
         }
 
+   
         .control-button:hover {
             background-color: rgba(255, 255, 255, 0.7);
         }
@@ -111,14 +117,21 @@
         #logo-banner {
             background: #fff;
             margin: 50px auto;
+            /* Centraliza o banner e mantém margem em cima e embaixo */
             width: 100%;
+            /* Ocupa toda a largura da tela */
             max-width: 1500px;
+            /* Define um limite máximo para a largura */
             box-sizing: border-box;
+            /* Inclui padding e border no cálculo da largura */
             padding: 20px;
+            /* Adiciona um padding interno, se necessário */
             border-radius: 30px;
-            display: flex;
+            align-items: center;
             justify-content: center;
+            display: flex;
         }
+
 
         .footer a {
             color: #ffffff;
@@ -131,17 +144,16 @@
             padding: 10px;
             border-radius: 15px;
             margin: 10px;
+            margin-right: 10px;
             width: 480px;
-            display: flex;
-            align-items: center;
+
+        }
+        .baixeoapp {
+               width: 500px; 
+               margin-right: 50px;
+               height: 5000px;
         }
 
-        .baixeoapp {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            margin-right: 50px;
-        }
 
         .play-button {
             background-color: rgba(206, 24, 0, 0.863);
@@ -152,37 +164,7 @@
         }
 
         #volume {
-            width: 100%;
-            max-width: 410px;
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .navbar a {
-                margin: 5px 0;
-            }
-            .player-controls {
-                flex-direction: column;
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .navbar img {
-                height: 30px;
-            }
-
-            .play-button {
-                padding: 8px;
-            }
-
-            .logo-center {
-                margin: 20px;
-            }
+            width: 410px;
         }
     </style>
 </head>
@@ -199,9 +181,9 @@
             <button class="play-button">
                 <i class="fas fa-play"></i>
             </button>
-            <input id="volume" type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            <input id="volume"  type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
         </div>
-        <img src="/BAIXEOAPP.png" class="baixeoapp" alt="Baixe o App">
+        <img src="/BAIXEOAPP.png" class="baixeoapp">
     </div>
 
     <div class="content">
@@ -220,56 +202,68 @@
                 <img src="/EVENTO3.png" alt="Imagem 3" class="cardsimg">
             </div>
             <div class="cardImagem">
-                <img src="/EVENTO3.png" alt="Imagem 4" class="cardsimg">
-            </div>
+            <img src="/EVENTO3.png" alt="Imagem 4" class="cardsimg">
         </div>
+    </div>
 
-        <footer class="footer">
-            <p>
-                <a href="mailto:radionovasmoc@gmail.com">radionovasmoc@gmail.com</a> |
-                <a href="https://api.whatsapp.com/send?phone=5511999999999" target="_blank">WhatsApp</a> |
-                <a href="https://instagram.com/seu_usuario" target="_blank">Instagram</a>
-            </p>
-            <p>COPYRIGHT RÁDIO NOVA - ATOS DO ESPÍRITO SANTO</p>
-            <p>by vitorizar</p>
-        </footer>
+    <footer class="footer">
+        <p>
+            <a href="mailto:radionovasmoc@gmail.com">radionovasmoc@gmail.com</a> |
+            <a href="https://api.whatsapp.com/send?phone=5511999999999" target="_blank">WhatsApp</a> |
+            <a href="https://instagram.com/seu_usuario" target="_blank">Instagram</a>
+        </p>
+        <p>COPYRIGHT RÁDIO NOVA - ATOS DO ESPÍRITO SANTO</p>
+        <p>by vitorizar</p>
+    </footer>
 
-        <!-- Elemento de áudio escondido -->
-        <audio id="radio" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
+    <!-- Elemento de áudio escondido -->
+    <audio id="radio" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
 
-        <script>
-            // Seleciona os elementos necessários
-            const playButton = document.querySelector('.play-button');
-            const audio = document.getElementById('radio');
-            const volumeSlider = document.querySelector('.volume-slider');
+    <script>
+        // Seleciona os elementos necessários
+        const playButton = document.querySelector('.play-button');
+        const audio = document.getElementById('radio');
+        const volumeSlider = document.querySelector('.volume-slider');
 
-            // Adiciona evento de clique no botão de play
-            playButton.addEventListener('click', () => {
-                if (audio.paused) {
-                    audio.play();
-                    playButton.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    audio.pause();
-                    playButton.innerHTML = '<i class="fas fa-play"></i>';
+        // Adiciona evento de clique no botão de play
+        playButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audio.pause();
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+
+        // Adiciona evento para controlar o volume
+        volumeSlider.addEventListener('input', () => {
+            audio.volume = volumeSlider.value;
+        });
+
+        // Carrossel
+        const carouselImages = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            carouselImages.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
                 }
             });
+        }
 
-            // Adiciona evento para controlar o volume
-            volumeSlider.addEventListener('input', () => {
-                audio.volume = volumeSlider.value;
-            });
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselImages.length - 1;
+            showImage(currentIndex);
+        });
 
-            // Carrossel
-            const carouselImages = document.querySelectorAll('.carousel img');
-            let currentIndex = 0;
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex < carouselImages.length - 1) ? currentIndex + 1 : 0;
+            showImage(currentIndex);
+        });
+    </script>
+</body>
 
-            function showImage(index) {
-                carouselImages.forEach((img, i) => {
-                    img.classList.remove('active');
-                    if (i === index) {
-                        img.classList.add('active');
-                    }
-                });
-            }
-
-            document.getElementById('prevBtn').add
+</html>
