@@ -11,7 +11,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #d4145a, #240b36);
+            background: linear-gradient(to bottom, #f73158, #039);
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -25,7 +25,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #d4145a;
+            background-color: #f73158;
             padding: 10px 20px;
             width: 100%;
             box-sizing: border-box;
@@ -100,7 +100,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(208, 231, 241, 0.219);
             border-radius: 10px;
             padding: 10px;
             width: 90%;
@@ -142,18 +142,49 @@
             max-width: 250px;
             margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
         }
+
+        /* Carrossel */
+        .carousel {
+            width: 90%;
+            max-width: 500px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .carousel img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .carousel-button.prev {
+            left: 10px;
+        }
+
+        .carousel-button.next {
+            right: 10px;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Barra de navegação -->
-     <!-- Navbar -->
      <div class="navbar">
         <img src="logo_nova.png" alt="Nova Logo"> <!-- Substitua pelo caminho correto da logo -->
         <div class="menu-icon">
             <div class="dropdown-content">
-                <a href="teste.html">Eventos</a> <!-- Link para a página de eventos -->
+                <a href="eventos.html">Eventos</a> <!-- Link para a página de eventos -->
             </div>
         </div>
     </div>
@@ -192,6 +223,14 @@
                 <span>Instagram</span>
             </a>
         </div>
+
+        <!-- Carrossel de Eventos -->
+        <div class="carousel">
+            <button class="carousel-button prev" id="prevButton">&#10094;</button>
+            <img src="event1.jpg" alt="Evento 1" class="carousel-image"> <!-- Substitua pelo caminho correto da imagem -->
+            <button class="carousel-button next" id="nextButton">&#10095;</button>
+        </div>
+
     </div>
 
     <!-- Elemento de Áudio -->
@@ -204,6 +243,26 @@
         const volumeDown = document.getElementById('volumeDown');
         const volumeSlider = document.getElementById('volumeSlider');
 
+        const carouselImages = ['event1.jpg', 'event2.jpg', 'event3.jpg']; // Caminhos das imagens dos eventos
+        let currentImageIndex = 0;
+
+        const carouselImage = document.querySelector('.carousel-image');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+
+        // Mudar para a próxima imagem
+        nextButton.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+            carouselImage.src = carouselImages[currentImageIndex];
+        });
+
+        // Mudar para a imagem anterior
+        prevButton.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+            carouselImage.src = carouselImages[currentImageIndex];
+        });
+
+        // Função de Play e Pause do áudio
         playButton.addEventListener('click', () => {
             if (audioPlayer.paused) {
                 audioPlayer.play();
@@ -214,6 +273,7 @@
             }
         });
 
+        // Controle de volume
         volumeUp.addEventListener('click', () => {
             audioPlayer.volume = Math.min(audioPlayer.volume + 0.1, 1);
             volumeSlider.value = audioPlayer.volume;
