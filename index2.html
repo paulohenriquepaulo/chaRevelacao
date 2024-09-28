@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rádio Nova - Atos do Espírito Santo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #f73158, #039);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f73158;
+            padding: 10px 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar a {
+            color: #f6faf8;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 70px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .logo-center {
+            max-width: 100%;
+            height: auto;
+            margin: 40px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .cardImagem {
+            flex: 1 1 250px; /* Ajusta o tamanho das imagens */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px; /* Espaçamento entre as imagens */
+        }
+
+        .cardsimg {
+            width: 100%;
+            max-width: 280px; /* Limita a largura máxima */
+            height: auto; /* Mantém a proporção */
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+
+        .control-button {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+        }
+
+        .control-button:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        #logo-banner {
+            background: #fff;
+            margin: 50px auto;
+            width: 100%;
+            max-width: 1500px;
+            box-sizing: border-box;
+            padding: 20px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .player-controls {
+            background-color: #ffffff86;
+            padding: 10px;
+            border-radius: 15px;
+            margin: 10px;
+            width: 480px;
+            display: flex;
+            align-items: center;
+        }
+
+        .baixeoapp {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin-right: 50px;
+        }
+
+        .play-button {
+            background-color: rgba(206, 24, 0, 0.863);
+            color: #ffffff;
+            border-color: #f6faf8;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        #volume {
+            width: 100%;
+            max-width: 410px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar a {
+                margin: 5px 0;
+            }
+            .player-controls {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar img {
+                height: 30px;
+            }
+
+            .play-button {
+                padding: 8px;
+            }
+
+            .logo-center {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="/LOGO MONOCROMÁTICA.png" alt="Logo Nova">
+        <nav class="navbartexto">
+            <a href="#">Página Inicial</a>
+            <a href="#">Programas</a>
+            <a href="/eventos.html">Eventos</a>
+        </nav>
+        <div class="player-controls">
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+            <input id="volume" type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+        </div>
+        <img src="/BAIXEOAPP.png" class="baixeoapp" alt="Baixe o App">
+    </div>
+
+    <div class="content">
+        <div id="logo-banner">
+            <img src="/BANNER1.png" alt="Logo Rádio Nova" class="logo-center">
+        </div>
+
+        <div class="cards">
+            <div class="cardImagem">
+                <img src="/EVENTO4.png" alt="Imagem 1" class="cardsimg">
+            </div>
+            <div class="cardImagem">
+                <img src="/EVENTO2.png" alt="Imagem 2" class="cardsimg">
+            </div>
+            <div class="cardImagem">
+                <img src="/EVENTO3.png" alt="Imagem 3" class="cardsimg">
+            </div>
+            <div class="cardImagem">
+                <img src="/EVENTO3.png" alt="Imagem 4" class="cardsimg">
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>
+                <a href="mailto:radionovasmoc@gmail.com">radionovasmoc@gmail.com</a> |
+                <a href="https://api.whatsapp.com/send?phone=5511999999999" target="_blank">WhatsApp</a> |
+                <a href="https://instagram.com/seu_usuario" target="_blank">Instagram</a>
+            </p>
+            <p>COPYRIGHT RÁDIO NOVA - ATOS DO ESPÍRITO SANTO</p>
+            <p>by vitorizar</p>
+        </footer>
+
+        <!-- Elemento de áudio escondido -->
+        <audio id="radio" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
+
+        <script>
+            // Seleciona os elementos necessários
+            const playButton = document.querySelector('.play-button');
+            const audio = document.getElementById('radio');
+            const volumeSlider = document.querySelector('.volume-slider');
+
+            // Adiciona evento de clique no botão de play
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    audio.pause();
+                    playButton.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+
+            // Adiciona evento para controlar o volume
+            volumeSlider.addEventListener('input', () => {
+                audio.volume = volumeSlider.value;
+            });
+
+            // Carrossel
+            const carouselImages = document.querySelectorAll('.carousel img');
+            let currentIndex = 0;
+
+            function showImage(index) {
+                carouselImages.forEach((img, i) => {
+                    img.classList.remove('active');
+                    if (i === index) {
+                        img.classList.add('active');
+                    }
+                });
+            }
+
+            document.getElementById('prevBtn').add
