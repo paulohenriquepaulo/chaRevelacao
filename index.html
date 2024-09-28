@@ -13,11 +13,6 @@
             font-family: Arial, sans-serif;
             background: linear-gradient(to bottom, #f73158, #039);
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            align-items: center;
-            justify-content: center;
         }
 
         /* Barra de navegação */
@@ -27,48 +22,25 @@
             align-items: center;
             background-color: #f73158;
             padding: 10px 20px;
-            width: 100%;
-            box-sizing: border-box;
-            position: fixed;
-            top: 0;
-            left: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .navbar img {
             height: 40px;
-            width: auto;
+            margin-right: 20px;
         }
 
-        .navbar .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* Espaçamento para compensar a navbar fixa */
-        .content {
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-            height: 100%;
-            margin-top: 70px; /* Para compensar a barra de navegação */
+            gap: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
         }
 
-        /* Seção Principal */
-        .main {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .main h1 {
-            font-size: 24px;
-            margin: 10px 0;
-        }
-
-        .playing-now {
-            font-size: 18px;
-            margin: 10px 0;
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .play-button {
@@ -76,193 +48,133 @@
             color: #d4145a;
             border: none;
             border-radius: 50%;
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: background-color 0.3s;
-            position: relative;
-            margin-bottom: 40px; /* Ajuste para subir o botão */
         }
 
         .play-button:hover {
             background-color: #e0e0e0;
         }
 
-        .play-button i {
-            font-size: 2.5em;
-        }
-
-        /* Player de Música */
-        .player {
+        .volume-control {
             display: flex;
             align-items: center;
             gap: 10px;
-            background-color: rgba(208, 231, 241, 0.219);
-            border-radius: 10px;
-            padding: 10px;
-            width: 90%;
-            max-width: 400px;
-            margin: 0 auto;
         }
 
         .volume-slider {
-            flex: 1;
-            margin: 0 10px;
+            width: 150px;
         }
 
-        .social-icons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .social-icons a {
+        .download-button {
+            background-color: #007bff;
             color: #ffffff;
-            font-size: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
             text-decoration: none;
+            font-weight: bold;
         }
 
-        .social-icons i {
-            margin-bottom: 5px;
-        }
-
-        .social-icons a span {
-            font-size: 14px;
-        }
-
-        /* Estilo para a imagem central */
-        .logo-center {
-            max-width: 250px;
-            margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
-        }
-
-        /* Carrossel */
+        /* Estilos do carrossel */
         .carousel {
-            width: 90%;
-            max-width: 500px;
-            margin-top: 20px;
-            position: relative;
-        }
-
-        .carousel img {
-            width: 100%;
+            display: flex;
+            align-items: center;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
             border-radius: 10px;
         }
 
-        .carousel-button {
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-image {
+            min-width: 100%;
+            height: auto;
+        }
+
+        .carousel-text {
+            max-width: 300px; /* Ajuste conforme necessário */
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .carousel-buttons {
             position: absolute;
             top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
+        }
+
+        .carousel-button {
+            background-color: rgba(255, 255, 255, 0.7);
             border: none;
-            padding: 10px;
+            border-radius: 50%;
             cursor: pointer;
-        }
-
-        .carousel-button.prev {
-            left: 10px;
-        }
-
-        .carousel-button.next {
-            right: 10px;
+            padding: 10px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Barra de navegação -->
-     <div class="navbar">
-        <img src="logo_nova.png" alt="Nova Logo"> <!-- Substitua pelo caminho correto da logo -->
-        <div class="menu-icon">
-            <div class="dropdown-content">
-                <a href="eventos.html">Eventos</a> <!-- Link para a página de eventos -->
-            </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="logo_nova.png" alt="Nova Logo">
+        <div class="nav-links">
+            <a href="#">Página Inicial</a>
+            <a href="#">Programas</a>
+            <a href="#">Eventos</a>
+            <a href="#">Contato</a>
         </div>
-    </div>
-
-    <!-- Seção de conteúdo principal -->
-    <div class="content">
-        <!-- Imagem acima do texto principal -->
-        <img src="path/to/your/image.png" alt="Logo" class="logo-center"> <!-- Substitua pelo caminho correto da imagem -->
-
-        <!-- Seção Principal -->
-        <section class="main">
-            <h1>Programa Atos do Espírito Santo</h1>
-            <div class="playing-now">Tocando Agora!</div>
-        </section>
-
-        <!-- Botão de Play Centralizado -->
         <button class="play-button" id="playButton">
             <i class="fas fa-play"></i>
         </button>
-
-        <!-- Player de Música -->
-        <div class="player">
-            <button class="volume-button" id="volumeDown">-</button>
-            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
-            <button class="volume-button" id="volumeUp">+</button>
+        <div class="volume-control">
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+            <button class="download-button">BAIXE O APP</button>
         </div>
-
-        <!-- Redes Sociais -->
-        <div class="social-icons">
-            <a href="https://wa.me/your_number" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                <span>WhatsApp</span>
-            </a>
-            <a href="https://www.instagram.com/_paulo_0liveira/" target="_blank">
-                <i class="fab fa-instagram"></i>
-                <span>Instagram</span>
-            </a>
-        </div>
-
-        <!-- Carrossel de Eventos -->
-        <div class="carousel">
-            <button class="carousel-button prev" id="prevButton">&#10094;</button>
-            <img src="event1.jpg" alt="Evento 1" class="carousel-image"> <!-- Substitua pelo caminho correto da imagem -->
-            <button class="carousel-button next" id="nextButton">&#10095;</button>
-        </div>
-
     </div>
 
-    <!-- Elemento de Áudio -->
-    <audio id="audioPlayer" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
+    <!-- Carrossel -->
+    <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+            <div style="display: flex; align-items: center;">
+                <img src="image1.jpg" alt="Imagem 1" class="carousel-image">
+                <div class="carousel-text">Texto descritivo para a imagem 1.</div>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <img src="image2.jpg" alt="Imagem 2" class="carousel-image">
+                <div class="carousel-text">Texto descritivo para a imagem 2.</div>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <img src="image3.jpg" alt="Imagem 3" class="carousel-image">
+                <div class="carousel-text">Texto descritivo para a imagem 3.</div>
+            </div>
+        </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" id="prevButton">&#10094;</button>
+            <button class="carousel-button" id="nextButton">&#10095;</button>
+        </div>
+    </div>
 
     <script>
         const playButton = document.getElementById('playButton');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const volumeUp = document.getElementById('volumeUp');
-        const volumeDown = document.getElementById('volumeDown');
+        const audioPlayer = new Audio('https://s1.bycast.com.br:8029/live?1727531346212');
         const volumeSlider = document.getElementById('volumeSlider');
 
-        const carouselImages = ['event1.jpg', 'event2.jpg', 'event3.jpg']; // Caminhos das imagens dos eventos
-        let currentImageIndex = 0;
-
-        const carouselImage = document.querySelector('.carousel-image');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-
-        // Mudar para a próxima imagem
-        nextButton.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
-            carouselImage.src = carouselImages[currentImageIndex];
-        });
-
-        // Mudar para a imagem anterior
-        prevButton.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
-            carouselImage.src = carouselImages[currentImageIndex];
-        });
-
-        // Função de Play e Pause do áudio
         playButton.addEventListener('click', () => {
             if (audioPlayer.paused) {
                 audioPlayer.play();
@@ -273,20 +185,28 @@
             }
         });
 
-        // Controle de volume
-        volumeUp.addEventListener('click', () => {
-            audioPlayer.volume = Math.min(audioPlayer.volume + 0.1, 1);
-            volumeSlider.value = audioPlayer.volume;
-        });
-
-        volumeDown.addEventListener('click', () => {
-            audioPlayer.volume = Math.max(audioPlayer.volume - 0.1, 0);
-            volumeSlider.value = audioPlayer.volume;
-        });
-
         volumeSlider.addEventListener('input', () => {
             audioPlayer.volume = volumeSlider.value;
         });
+
+        // Carrossel
+        let currentIndex = 0;
+        const totalImages = document.querySelectorAll('.carousel-images > div').length;
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        });
+
+        document.getElementById('prevButton').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const carouselImages = document.getElementById('carouselImages');
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
     </script>
 
 </body>
