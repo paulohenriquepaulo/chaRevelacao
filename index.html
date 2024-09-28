@@ -16,8 +16,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centraliza verticalmente */
-            min-height: 100vh; /* Garante que ocupe toda a altura da tela */
+            justify-content: center;
+            min-height: 100vh;
+            padding-top: 60px; /* Adiciona espaço para a navbar */
         }
 
         /* Barra de navegação */
@@ -28,10 +29,10 @@
             background-color: #f73158;
             padding: 10px 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            width: 100%; /* Faz a navbar ocupar toda a largura */
-            position: absolute; /* Mantém a navbar no topo */
+            width: 100%;
+            position: fixed; /* Mantém a navbar no topo */
             top: 0;
-            z-index: 100; /* Mantém a navbar acima do carrossel */
+            z-index: 100;
         }
 
         .navbar img {
@@ -99,7 +100,7 @@
             margin: 20px auto;
             overflow: hidden;
             border-radius: 10px;
-            position: relative; /* Para posicionar os botões dentro do carrossel */
+            position: relative;
         }
 
         .carousel-images {
@@ -111,19 +112,21 @@
             display: flex;
             align-items: center;
             min-width: 100%;
+            flex-direction: column; /* Alinha o texto abaixo da imagem */
         }
 
         .carousel-image {
             max-width: 100%;
             height: auto;
-            border-radius: 10px; /* Adiciona cantos arredondados às imagens */
+            border-radius: 10px;
         }
 
         .carousel-text {
-            max-width: 300px; /* Ajuste conforme necessário */
+            max-width: 90%; /* Ajusta para caber em telas menores */
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
+            text-align: center; /* Centraliza o texto */
         }
 
         .carousel-buttons {
@@ -145,21 +148,6 @@
 
         /* Responsividade */
         @media (max-width: 768px) {
-            .carousel {
-                flex-direction: column; /* Empilha o texto embaixo da imagem em telas menores */
-                max-width: 100%;
-            }
-
-            .carousel-item {
-                flex-direction: column; /* Coloca imagem acima do texto */
-                align-items: center; /* Centraliza */
-            }
-
-            .carousel-text {
-                max-width: 90%; /* Reduz a largura do texto em telas menores */
-                text-align: center; /* Centraliza o texto */
-            }
-
             .volume-slider {
                 width: 100px; /* Ajusta a largura do controle de volume */
             }
