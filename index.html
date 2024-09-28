@@ -1,62 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play Music</title>
+    <title>Rádio Aviva7</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #42ffff;
             margin: 0;
-            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #1b1b1b;
+            color: #ffffff;
         }
 
-        img {
-            max-width: 300px;
-            margin-bottom: 20px;
-        }
-
-        button {
+        /* Cabeçalho */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: #000;
+        }
+
+        .play-button {
+            padding: 10px 20px;
+            background-color: #b0121a;
+            color: #fff;
             border: none;
-            background-color: #4CAF50;
-            color: rgb(0, 0, 0);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            background-color: #e51c23;
+        }
+
+        /* Seção Principal */
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: calc(100vh - 60px);
+            background: url('seu-imagem-fundo.jpg') no-repeat center center/cover;
+        }
+
+        .main h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .main button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #b0121a;
+            border: none;
+            color: white;
+            cursor: pointer;
             border-radius: 5px;
         }
 
-        button:hover {
-            background-color: #45a049;
+        .main button:hover {
+            background-color: #e51c23;
+        }
+
+        /* Player */
+        .player {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #b0121a;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            width: 100%;
+            max-width: 400px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .player .playing-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player img {
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-button {
+            background-color: #e51c23;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .volume-button:hover {
+            background-color: #f44336;
+        }
+
+        .volume-slider {
+            width: 100px;
         }
     </style>
 </head>
+
 <body>
 
-    <img src="/Captura de tela 2024-09-28 105220.png" alt="Imagem">
-    <button id="playButton">Play</button>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>Rádio NOVA</span>
+        </div>
+        <nav>
+            <a href="#">Início</a>
+        </nav>
+        <div class="social-icons">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#"><img src="youtube-icon.png" alt="YouTube"></a>
+            <a href="#"><img src="whatsapp-icon.png" alt="WhatsApp"></a>
+        </div>
+    </header>
 
-    <audio id="music" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
+    <!-- Seção Principal -->
+    <section class="main">
+        <h1>Caminho, verdade e vida!</h1>
+        <button class="play-button" id="playButton">OUVIR</button>
+        <div class="playing-now">
+            <p>No Ar</p>
+            <div class="program-info">
+                <span>O Milagre Deus Faz - Kleber e Wanderlei</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Player de Música -->
+    <div class="player">
+        <div class="player-controls">
+            <button class="volume-button" id="volumeDown">-</button>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            <button class="volume-button" id="volumeUp">+</button>
+        </div>
+    </div>
+
+    <!-- Elemento de Áudio -->
+    <audio id="audioPlayer" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
 
     <script>
         const playButton = document.getElementById('playButton');
-        const music = document.getElementById('music');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const volumeUp = document.getElementById('volumeUp');
+        const volumeDown = document.getElementById('volumeDown');
+        const volumeSlider = document.getElementById('volumeSlider');
 
         playButton.addEventListener('click', () => {
-            if (music.paused) {
-                music.play();
-                playButton.textContent = 'Pause';
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButton.textContent = 'PAUSAR';
             } else {
-                music.pause();
-                playButton.textContent = 'Play';
+                audioPlayer.pause();
+                playButton.textContent = 'OUVIR';
             }
+        });
+
+        volumeUp.addEventListener('click', () => {
+            audioPlayer.volume = Math.min(audioPlayer.volume + 0.1, 1);
+            volumeSlider.value = audioPlayer.volume;
+        });
+
+        volumeDown.addEventListener('click', () => {
+            audioPlayer.volume = Math.max(audioPlayer.volume - 0.1, 0);
+            volumeSlider.value = audioPlayer.volume;
+        });
+
+        volumeSlider.addEventListener('input', () => {
+            audioPlayer.volume = volumeSlider.value;
         });
     </script>
 
 </body>
+
 </html>
