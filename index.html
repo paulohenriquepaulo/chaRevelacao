@@ -133,11 +133,12 @@
     <audio id="radio" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
 
     <script>
-        // Seleciona o botão de play e o elemento de áudio
+        // Seleciona os elementos necessários
         const playButton = document.querySelector('.play-button');
         const audio = document.getElementById('radio');
+        const volumeSlider = document.querySelector('.volume-slider');
 
-        // Adiciona evento de clique no botão
+        // Adiciona evento de clique no botão de play
         playButton.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
@@ -146,6 +147,11 @@
                 audio.pause();
                 playButton.innerHTML = '<i class="fas fa-play"></i>';
             }
+        });
+
+        // Adiciona evento para controlar o volume
+        volumeSlider.addEventListener('input', () => {
+            audio.volume = volumeSlider.value;
         });
     </script>
 </body>
