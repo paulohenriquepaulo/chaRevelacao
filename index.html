@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rádio Aviva7</title>
+    <title>Rádio Nova - Atos do Espírito Santo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -16,9 +16,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            padding-top: 60px;
+            box-sizing: border-box;
         }
 
         .navbar {
@@ -27,246 +26,128 @@
             align-items: center;
             background-color: #f73158;
             padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             width: 100%;
             position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            z-index: 1000;
         }
 
         .navbar img {
             height: 40px;
-            margin-right: 20px;
+            width: auto;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .nav-links a {
+        .navbar a {
+            color: #fff;
             text-decoration: none;
-            color: inherit;
-            cursor: pointer; /* Muda o cursor para indicar que é clicável */
-        }
-
-        .play-button {
-            background-color: #ffffff;
-            color: #d4145a;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .play-button:hover {
-            background-color: #e0e0e0;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .volume-slider {
-            width: 150px;
-        }
-
-        .download-button {
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
+            margin: 0 10px;
+            font-size: 18px;
         }
 
         .content {
-            display: none; /* Inicialmente oculta todo o conteúdo */
-            padding: 20px;
-            text-align: center; /* Centraliza o texto */
-        }
-
-        /* Estilos do carrossel */
-        .carousel {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            max-width: 800px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 10px;
-            position: relative;
+            margin-top: 70px;
+            width: 90%;
+            max-width: 1200px;
         }
 
-        .carousel-images {
+        .logo-center {
+            max-width: 350px;
+            margin: 20px 0;
+        }
+
+        .buttons {
             display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-item {
-            display: flex;
-            align-items: center;
-            min-width: 100%;
-            flex-direction: column; /* Alinha o texto abaixo da imagem */
-        }
-
-        .carousel-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .carousel-text {
-            max-width: 90%; /* Ajusta para caber em telas menores */
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            text-align: center; /* Centraliza o texto */
-        }
-
-        .carousel-buttons {
-            position: absolute;
-            top: 50%;
+            justify-content: space-around;
             width: 100%;
+            max-width: 700px;
+        }
+
+        .button {
+            background-color: #e74c3c;
+            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
             display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
         }
 
-        .carousel-button {
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            padding: 10px;
+        .button:hover {
+            background-color: #c0392b;
         }
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .volume-slider {
-                width: 100px; /* Ajusta a largura do controle de volume */
-            }
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Navbar -->
     <div class="navbar">
-        <img src="logo_nova.png" alt="Nova Logo">
-        <div class="nav-links">
-            <a href="#" onclick="showContent('home')">Página Inicial</a>
-            <a href="#" onclick="showContent('programs')">Programas</a>
-            <a href="/teste.html" onclick="showContent('events')">Eventos</a>
-        </div>
-        <button class="play-button" id="playButton">
-            <i class="fas fa-play"></i>
-        </button>
-        <div class="volume-control">
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
-            <button class="download-button">BAIXE O APP</button>
-        </div>
-    </div>
-
-    <!-- Carrossel -->
-    <div class="carousel">
-        <div class="carousel-images" id="carouselImages">
-            <div class="carousel-item">
-                <img src="/Captura de tela 2024-09-28 105220.png" alt="Imagem 1" class="carousel-image">
-                <div class="carousel-text">Texto descritivo para a imagem 1.</div>
-            </div>
-            <div class="carousel-item">
-                <img src="/wp_1920x1080_dois_1.png" alt="Imagem 2" class="carousel-image">
-                <div class="carousel-text">Texto descritivo para a imagem 2.</div>
-            </div>
-            <div class="carousel-item">
-                <img src="image3.jpg" alt="Imagem 3" class="carousel-image">
-                <div class="carousel-text">Texto descritivo para a imagem 3.</div>
-            </div>
-        </div>
-        <div class="carousel-buttons">
-            <button class="carousel-button" id="prevButton">&#10094;</button>
-            <button class="carousel-button" id="nextButton">&#10095;</button>
+        <img src="logo.png" alt="Logo Nova">
+        <nav>
+            <a href="#">Página Inicial</a>
+            <a href="#">Programas</a>
+            <a href="/teste.html">Eventos</a>
+        </nav>
+        <div class="player-controls">
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            <a href="#" class="download-app">Baixe o App</a>
         </div>
     </div>
 
-    <!-- Conteúdo -->
-    <div id="home" class="content" style="display: block;"> <!-- Inicialmente mostra a página inicial -->
-        <h1>Bem-vindo à Rádio Aviva7</h1>
-        <p>Aqui você pode ouvir a melhor programação!</p>
+    <div class="content">
+        <img src="path/to/your/image.png" alt="Logo Rádio Nova" class="logo-center">
+        <div class="buttons">
+            <div class="button">1</div>
+            <div class="button">2</div>
+            <div class="button">3</div>
+        </div>
     </div>
 
-    <div id="programs" class="content">
-        <h1>Programas</h1>
-        <p>Descubra nossa programação.</p>
-    </div>
+    <footer class="footer">
+        <p>radionovasmoc@gmail.com | <a href="#">WhatsApp</a> | <a href="#">Instagram</a></p>
+        <p>COPYRIGHT RÁDIO NOVA - ATOS DO ESPÍRITO SANTO</p>
+        <p>by vitorizar</p>
+    </footer>
 
-    <div id="events" class="content">
-        <h1>Eventos</h1>
-        <p>Aqui você pode encontrar informações sobre os próximos eventos.</p>
-        <p><a href="#" onclick="showContent('home')" style="color: #ffffff;">Voltar para a página inicial</a></p>
-    </div>
+    <!-- Elemento de áudio escondido -->
+    <audio id="radio" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
 
     <script>
-        const playButton = document.getElementById('playButton');
-        const audioPlayer = new Audio('https://s1.bycast.com.br:8029/live?1727531346212');
-        const volumeSlider = document.getElementById('volumeSlider');
+        // Seleciona o botão de play e o elemento de áudio
+        const playButton = document.querySelector('.play-button');
+        const audio = document.getElementById('radio');
 
+        // Adiciona evento de clique no botão
         playButton.addEventListener('click', () => {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-                playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Muda para ícone de pausa
+            if (audio.paused) {
+                audio.play();
+                playButton.innerHTML = '<i class="fas fa-pause"></i>';
             } else {
-                audioPlayer.pause();
-                playButton.innerHTML = '<i class="fas fa-play"></i>'; // Muda para ícone de play
+                audio.pause();
+                playButton.innerHTML = '<i class="fas fa-play"></i>';
             }
         });
-
-        volumeSlider.addEventListener('input', () => {
-            audioPlayer.volume = volumeSlider.value;
-        });
-
-        // Carrossel
-        let currentIndex = 0;
-        const totalImages = document.querySelectorAll('.carousel-images > .carousel-item').length;
-
-        document.getElementById('nextButton').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalImages;
-            updateCarousel();
-        });
-
-        document.getElementById('prevButton').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-            updateCarousel();
-        });
-
-        function updateCarousel() {
-            const carouselImages = document.getElementById('carouselImages');
-            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        // Função para mostrar o conteúdo
-        function showContent(section) {
-            const contents = document.querySelectorAll('.content');
-            contents.forEach(content => {
-                content.style.display = 'none'; // Esconde todos os conteúdos
-            });
-            document.getElementById(section).style.display = 'block'; // Mostra o conteúdo selecionado
-        }
     </script>
-
 </body>
 
 </html>
