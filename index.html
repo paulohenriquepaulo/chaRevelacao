@@ -18,10 +18,9 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding-top: 60px; /* Adiciona espaço para a navbar */
+            padding-top: 60px;
         }
 
-        /* Barra de navegação */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -30,7 +29,7 @@
             padding: 10px 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             width: 100%;
-            position: fixed; /* Mantém a navbar no topo */
+            position: fixed;
             top: 0;
             z-index: 100;
         }
@@ -51,6 +50,7 @@
         .nav-links a {
             text-decoration: none;
             color: inherit;
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
         }
 
         .play-button {
@@ -90,6 +90,12 @@
             cursor: pointer;
             text-decoration: none;
             font-weight: bold;
+        }
+
+        .content {
+            display: none; /* Inicialmente oculta todo o conteúdo */
+            padding: 20px;
+            text-align: center; /* Centraliza o texto */
         }
 
         /* Estilos do carrossel */
@@ -161,9 +167,9 @@
     <div class="navbar">
         <img src="logo_nova.png" alt="Nova Logo">
         <div class="nav-links">
-            <a href="#">Página Inicial</a>
-            <a href="#">Programas</a>
-            <a href="#">Eventos</a>
+            <a href="#" onclick="showContent('home')">Página Inicial</a>
+            <a href="#" onclick="showContent('programs')">Programas</a>
+            <a href="/teste.html" onclick="showContent('events')">Eventos</a>
         </div>
         <button class="play-button" id="playButton">
             <i class="fas fa-play"></i>
@@ -194,6 +200,23 @@
             <button class="carousel-button" id="prevButton">&#10094;</button>
             <button class="carousel-button" id="nextButton">&#10095;</button>
         </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div id="home" class="content" style="display: block;"> <!-- Inicialmente mostra a página inicial -->
+        <h1>Bem-vindo à Rádio Aviva7</h1>
+        <p>Aqui você pode ouvir a melhor programação!</p>
+    </div>
+
+    <div id="programs" class="content">
+        <h1>Programas</h1>
+        <p>Descubra nossa programação.</p>
+    </div>
+
+    <div id="events" class="content">
+        <h1>Eventos</h1>
+        <p>Aqui você pode encontrar informações sobre os próximos eventos.</p>
+        <p><a href="#" onclick="showContent('home')" style="color: #ffffff;">Voltar para a página inicial</a></p>
     </div>
 
     <script>
@@ -232,6 +255,15 @@
         function updateCarousel() {
             const carouselImages = document.getElementById('carouselImages');
             carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Função para mostrar o conteúdo
+        function showContent(section) {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.style.display = 'none'; // Esconde todos os conteúdos
+            });
+            document.getElementById(section).style.display = 'block'; // Mostra o conteúdo selecionado
         }
     </script>
 
