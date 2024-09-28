@@ -1,193 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rádio Aviva7</title>
+    <title>Eventos - Rádio Aviva7</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #e91e63, #673ab7);
+            background: linear-gradient(to bottom, #673ab7, #e91e63);
             color: #ffffff;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
             min-height: 100vh;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* Cabeçalho */
-        header {
+        /* Barra de navegação */
+        .navbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            margin-bottom: 20px;
+            background-color: #e91e63;
+            padding: 10px 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .navbar img {
+            height: 40px;
+            width: auto;
         }
 
-        .logo img {
-            height: 80px;
-            width: 80px;
-        }
-
-        /* Seção Principal */
-        .main {
-            text-align: center;
-        }
-
-        .main h1 {
+        .navbar .menu-icon {
             font-size: 24px;
-            margin: 10px 0;
-        }
-
-        .playing-now {
-            font-size: 20px;
-            margin: 10px 0;
-        }
-
-        .play-button {
-            background-color: #ffffff;
-            color: #b0121a;
-            border: none;
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin: 20px 0;
-            position: relative; /* Para o botão de play */
         }
 
-        .play-button:hover {
-            background-color: #e0e0e0;
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 20px auto;
         }
 
-        .play-button i {
-            font-size: 2em;
-        }
-
-        /* Player de Música */
-        .player {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .event {
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-            padding: 10px;
-            width: 90%;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .volume-slider {
-            flex: 1;
-            margin: 0 10px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: #ffffff;
-            font-size: 24px;
-        }
-
-        /* Centralizando o botão de play */
-        .main {
+            padding: 20px;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
+            gap: 10px;
         }
+
+        .event img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .event h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .event p {
+            font-size: 16px;
+        }
+
+        .event a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #d4145a;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .event a:hover {
+            background-color: #b0121a;
+        }
+
     </style>
 </head>
-
 <body>
 
-    <!-- Cabeçalho -->
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
+    <!-- Barra de navegação -->
+    <div class="navbar">
+        <a href="index.html"><img src="logo_nova.png" alt="Nova Logo"></a>
+        <div class="menu-icon">
+            <a href="index.html"><i class="fas fa-home"></i></a> <!-- Link para voltar à página inicial -->
         </div>
-    </header>
-
-    <!-- Seção Principal -->
-    <section class="main">
-        <h1>Programa Atos do Espírito Santo</h1>
-        <div class="playing-now">Tocando Agora!</div>
-        <button class="play-button" id="playButton">
-            <i class="fas fa-play"></i>
-        </button>
-    </section>
-
-    <!-- Player de Música -->
-    <div class="player">
-        <button class="volume-button" id="volumeDown">-</button>
-        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
-        <button class="volume-button" id="volumeUp">+</button>
     </div>
 
-    <!-- Redes Sociais -->
-    <div class="social-icons">
-        <a href="https://wa.me/your_number" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/your_profile" target="_blank"><i class="fab fa-instagram"></i></a>
+    <div class="container">
+        <h1>Próximos Eventos</h1>
+
+        <!-- Evento 1 -->
+        <div class="event">
+            <img src="path/to/event-image1.jpg" alt="Imagem do Evento 1">
+            <h2>Congresso de Adoração 2024</h2>
+            <p>Venha participar do maior congresso de adoração de 2024, com a presença de líderes espirituais e músicos de todo o Brasil. Será um evento de cura e renovação espiritual.</p>
+            <a href="https://www.evento1.com" target="_blank">Saiba Mais</a>
+        </div>
+
+        <!-- Evento 2 -->
+        <div class="event">
+            <img src="path/to/event-image2.jpg" alt="Imagem do Evento 2">
+            <h2>Retiro Espiritual Jovem</h2>
+            <p>Um fim de semana de retiro para jovens com atividades espirituais, louvor, e comunhão. Não perca essa oportunidade de se conectar com Deus e com outros jovens cristãos.</p>
+            <a href="https://www.evento2.com" target="_blank">Saiba Mais</a>
+        </div>
+
+        <!-- Evento 3 -->
+        <div class="event">
+            <img src="path/to/event-image3.jpg" alt="Imagem do Evento 3">
+            <h2>Encontro de Casais 2024</h2>
+            <p>Fortaleça seu relacionamento com palestras voltadas para casais, momentos de oração, e renovação de votos. Esse evento será uma benção para todos os casais presentes.</p>
+            <a href="https://www.evento3.com" target="_blank">Saiba Mais</a>
+        </div>
     </div>
-
-    <!-- Elemento de Áudio -->
-    <audio id="audioPlayer" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
-
-    <script>
-        const playButton = document.getElementById('playButton');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const volumeUp = document.getElementById('volumeUp');
-        const volumeDown = document.getElementById('volumeDown');
-        const volumeSlider = document.getElementById('volumeSlider');
-
-        playButton.addEventListener('click', () => {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-                playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Muda para ícone de pausa
-            } else {
-                audioPlayer.pause();
-                playButton.innerHTML = '<i class="fas fa-play"></i>'; // Muda para ícone de play
-            }
-        });
-
-        volumeUp.addEventListener('click', () => {
-            audioPlayer.volume = Math.min(audioPlayer.volume + 0.1, 1);
-            volumeSlider.value = audioPlayer.volume;
-        });
-
-        volumeDown.addEventListener('click', () => {
-            audioPlayer.volume = Math.max(audioPlayer.volume - 0.1, 0);
-            volumeSlider.value = audioPlayer.volume;
-        });
-
-        volumeSlider.addEventListener('input', () => {
-            audioPlayer.volume = volumeSlider.value;
-        });
-    </script>
 
 </body>
-
 </html>
