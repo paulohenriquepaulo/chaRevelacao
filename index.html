@@ -59,27 +59,42 @@
             margin: 20px 0;
         }
 
-        .buttons {
-            display: flex;
-            justify-content: space-around;
+        .carousel {
+            position: relative;
             width: 100%;
             max-width: 700px;
-        }
-
-        .button {
-            background-color: #e74c3c;
+            overflow: hidden;
             border-radius: 10px;
-            width: 100px;
-            height: 100px;
-            margin: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s;
         }
 
-        .button:hover {
-            background-color: #c0392b;
+        .carousel img {
+            width: 100%;
+            display: none; /* Esconde todas as imagens por padrão */
+        }
+
+        .carousel img.active {
+            display: block; /* Mostra apenas a imagem ativa */
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+
+        .control-button {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .control-button:hover {
+            background-color: rgba(255, 255, 255, 0.7);
         }
 
         .footer {
@@ -99,7 +114,7 @@
 
 <body>
     <div class="navbar">
-        <img src="logo.png" alt="Logo Nova">
+        <img src="/logo pequena.png" alt="Logo Nova">
         <nav>
             <a href="#">Página Inicial</a>
             <a href="#">Programas</a>
@@ -115,16 +130,26 @@
     </div>
 
     <div class="content">
-        <img src="path/to/your/image.png" alt="Logo Rádio Nova" class="logo-center">
-        <div class="buttons">
-            <div class="button">1</div>
-            <div class="button">2</div>
-            <div class="button">3</div>
+        <img src="/logo grande.png" alt="Logo Rádio Nova" class="logo-center">
+
+        <!-- Carrossel -->
+        <div class="carousel">
+            <img src="/Captura de tela 2024-09-28 105220.png" alt="Imagem 1" class="active">
+            <img src="path/to/image2.jpg" alt="Imagem 2">
+            <img src="path/to/image3.jpg" alt="Imagem 3">
+            <div class="carousel-controls">
+                <button class="control-button" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="control-button" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
         </div>
     </div>
 
     <footer class="footer">
-        <p>radionovasmoc@gmail.com | <a href="#">WhatsApp</a> | <a href="#">Instagram</a></p>
+        <p>
+            <a href="mailto:radionovasmoc@gmail.com">radionovasmoc@gmail.com</a> |
+            <a href="https://api.whatsapp.com/send?phone=5511999999999" target="_blank">WhatsApp</a> |
+            <a href="https://instagram.com/seu_usuario" target="_blank">Instagram</a>
+        </p>
         <p>COPYRIGHT RÁDIO NOVA - ATOS DO ESPÍRITO SANTO</p>
         <p>by vitorizar</p>
     </footer>
@@ -152,6 +177,29 @@
         // Adiciona evento para controlar o volume
         volumeSlider.addEventListener('input', () => {
             audio.volume = volumeSlider.value;
+        });
+
+        // Carrossel
+        const carouselImages = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            carouselImages.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
+                }
+            });
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselImages.length - 1;
+            showImage(currentIndex);
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex < carouselImages.length - 1) ? currentIndex + 1 : 0;
+            showImage(currentIndex);
         });
     </script>
 </body>
