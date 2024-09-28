@@ -6,22 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rádio Aviva7</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #1b1b1b;
+            background: linear-gradient(to bottom, #e91e63, #673ab7);
             color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Cabeçalho */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #ffffff;
-            color: #000;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .logo {
@@ -31,122 +38,86 @@
         }
 
         .logo img {
-            height: 40px;
+            height: 80px;
+            width: 80px;
         }
 
-        nav {
+        /* Seção Principal */
+        .main {
+            text-align: center;
+        }
+
+        .main h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .playing-now {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .play-button {
+            background-color: #ffffff;
+            color: #b0121a;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
             display: flex;
-            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 20px 0;
+            position: relative; /* Para o botão de play */
         }
 
-        nav a {
-            text-decoration: none;
-            color: #000;
-            font-weight: bold;
+        .play-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .play-button i {
+            font-size: 2em;
+        }
+
+        /* Player de Música */
+        .player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            width: 90%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .volume-slider {
+            flex: 1;
+            margin: 0 10px;
         }
 
         .social-icons {
             display: flex;
-            gap: 10px;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
         }
 
         .social-icons a {
-            color: #000;
+            color: #ffffff;
+            font-size: 24px;
         }
 
-        .play-button {
-            padding: 10px 20px;
-            background-color: #b0121a;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .play-button:hover {
-            background-color: #e51c23;
-        }
-
-        /* Seção Principal */
+        /* Centralizando o botão de play */
         .main {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            height: calc(100vh - 60px);
-            background: url('seu-imagem-fundo.jpg') no-repeat center center/cover;
-        }
-
-        .main h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-
-        .main button {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #b0121a;
-            border: none;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .main button:hover {
-            background-color: #e51c23;
-        }
-
-        /* Player */
-        .player {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #b0121a;
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #fff;
-            width: 100%;
-            max-width: 400px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-
-        .player .playing-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .player img {
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .volume-button {
-            background-color: #e51c23;
-            border: none;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .volume-button:hover {
-            background-color: #f44336;
-        }
-
-        .volume-slider {
-            width: 100px;
+            height: 100%;
         }
     </style>
 </head>
@@ -157,38 +128,29 @@
     <header>
         <div class="logo">
             <img src="logo.png" alt="Logo">
-            <span>Rádio NOVA</span>
-        </div>
-        <nav>
-            <a href="#">Início</a>
-        </nav>
-        <div class="social-icons">
-            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-            <a href="#"><img src="youtube-icon.png" alt="YouTube"></a>
-            <a href="#"><img src="whatsapp-icon.png" alt="WhatsApp"></a>
         </div>
     </header>
 
     <!-- Seção Principal -->
     <section class="main">
-        <h1>Caminho, verdade e vida!</h1>
-        <button class="play-button" id="playButton">OUVIR</button>
-        <div class="playing-now">
-            <p>No Ar</p>
-            <div class="program-info">
-                <span>O Milagre Deus Faz - Kleber e Wanderlei</span>
-            </div>
-        </div>
+        <h1>Programa Atos do Espírito Santo</h1>
+        <div class="playing-now">Tocando Agora!</div>
+        <button class="play-button" id="playButton">
+            <i class="fas fa-play"></i>
+        </button>
     </section>
 
     <!-- Player de Música -->
     <div class="player">
-        <div class="player-controls">
-            <button class="volume-button" id="volumeDown">-</button>
-            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
-            <button class="volume-button" id="volumeUp">+</button>
-        </div>
+        <button class="volume-button" id="volumeDown">-</button>
+        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
+        <button class="volume-button" id="volumeUp">+</button>
+    </div>
+
+    <!-- Redes Sociais -->
+    <div class="social-icons">
+        <a href="https://wa.me/your_number" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/your_profile" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
 
     <!-- Elemento de Áudio -->
@@ -204,10 +166,10 @@
         playButton.addEventListener('click', () => {
             if (audioPlayer.paused) {
                 audioPlayer.play();
-                playButton.textContent = 'PAUSAR';
+                playButton.innerHTML = '<i class="fas fa-pause"></i>'; // Muda para ícone de pausa
             } else {
                 audioPlayer.pause();
-                playButton.textContent = 'OUVIR';
+                playButton.innerHTML = '<i class="fas fa-play"></i>'; // Muda para ícone de play
             }
         });
 
