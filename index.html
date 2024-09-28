@@ -13,6 +13,11 @@
             font-family: Arial, sans-serif;
             background: linear-gradient(to bottom, #f73158, #039);
             color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Centraliza verticalmente */
+            min-height: 100vh; /* Garante que ocupe toda a altura da tela */
         }
 
         /* Barra de navegação */
@@ -23,6 +28,10 @@
             background-color: #f73158;
             padding: 10px 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%; /* Faz a navbar ocupar toda a largura */
+            position: absolute; /* Mantém a navbar no topo */
+            top: 0;
+            z-index: 100; /* Mantém a navbar acima do carrossel */
         }
 
         .navbar img {
@@ -90,6 +99,7 @@
             margin: 20px auto;
             overflow: hidden;
             border-radius: 10px;
+            position: relative; /* Para posicionar os botões dentro do carrossel */
         }
 
         .carousel-images {
@@ -97,9 +107,16 @@
             transition: transform 0.5s ease-in-out;
         }
 
-        .carousel-image {
+        .carousel-item {
+            display: flex;
+            align-items: center;
             min-width: 100%;
+        }
+
+        .carousel-image {
+            max-width: 100%;
             height: auto;
+            border-radius: 10px; /* Adiciona cantos arredondados às imagens */
         }
 
         .carousel-text {
@@ -124,6 +141,28 @@
             border-radius: 50%;
             cursor: pointer;
             padding: 10px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .carousel {
+                flex-direction: column; /* Empilha o texto embaixo da imagem em telas menores */
+                max-width: 100%;
+            }
+
+            .carousel-item {
+                flex-direction: column; /* Coloca imagem acima do texto */
+                align-items: center; /* Centraliza */
+            }
+
+            .carousel-text {
+                max-width: 90%; /* Reduz a largura do texto em telas menores */
+                text-align: center; /* Centraliza o texto */
+            }
+
+            .volume-slider {
+                width: 100px; /* Ajusta a largura do controle de volume */
+            }
         }
     </style>
 </head>
@@ -151,15 +190,15 @@
     <!-- Carrossel -->
     <div class="carousel">
         <div class="carousel-images" id="carouselImages">
-            <div style="display: flex; align-items: center;">
+            <div class="carousel-item">
                 <img src="image1.jpg" alt="Imagem 1" class="carousel-image">
                 <div class="carousel-text">Texto descritivo para a imagem 1.</div>
             </div>
-            <div style="display: flex; align-items: center;">
+            <div class="carousel-item">
                 <img src="image2.jpg" alt="Imagem 2" class="carousel-image">
                 <div class="carousel-text">Texto descritivo para a imagem 2.</div>
             </div>
-            <div style="display: flex; align-items: center;">
+            <div class="carousel-item">
                 <img src="image3.jpg" alt="Imagem 3" class="carousel-image">
                 <div class="carousel-text">Texto descritivo para a imagem 3.</div>
             </div>
@@ -191,7 +230,7 @@
 
         // Carrossel
         let currentIndex = 0;
-        const totalImages = document.querySelectorAll('.carousel-images > div').length;
+        const totalImages = document.querySelectorAll('.carousel-images > .carousel-item').length;
 
         document.getElementById('nextButton').addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % totalImages;
