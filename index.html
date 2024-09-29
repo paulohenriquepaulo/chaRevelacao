@@ -31,6 +31,7 @@
             top: 0;
             left: 0;
             z-index: 1000;
+            flex-wrap: wrap;
         }
 
         .navbar img {
@@ -43,7 +44,6 @@
             text-decoration: none;
             margin: 0 10px;
             font-size: 18px;
-
         }
 
         .content {
@@ -60,31 +60,25 @@
             margin: 40px;
         }
 
-
-
         .cards {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 30px;
-  
-
+            flex-wrap: wrap;
         }
+
         .cardImagem {
             width: 65px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right : 120px;
-            margin-left: 120px;
-            
-            
+            margin: 20px;
         }
 
         .cardsimg {
-           width: 280px;
-
-
+            width: 280px;
+            max-width: 100%;
         }
 
         .carousel-controls {
@@ -102,7 +96,6 @@
             cursor: pointer;
         }
 
-   
         .control-button:hover {
             background-color: rgba(255, 255, 255, 0.7);
         }
@@ -117,21 +110,15 @@
         #logo-banner {
             background: #fff;
             margin: 50px auto;
-            /* Centraliza o banner e mantém margem em cima e embaixo */
             width: 100%;
-            /* Ocupa toda a largura da tela */
             max-width: 1500px;
-            /* Define um limite máximo para a largura */
             box-sizing: border-box;
-            /* Inclui padding e border no cálculo da largura */
             padding: 20px;
-            /* Adiciona um padding interno, se necessário */
             border-radius: 30px;
             align-items: center;
             justify-content: center;
             display: flex;
         }
-
 
         .footer a {
             color: #ffffff;
@@ -144,16 +131,19 @@
             padding: 10px;
             border-radius: 15px;
             margin: 10px;
-            margin-right: 10px;
-            width: 480px;
-
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+
         .baixeoapp {
-               width: 500px; 
-               margin-right: 50px;
-               height: 5000px;
+            width: 100%;
+            max-width: 500px;
+            margin: 10px;
+            height: auto;
         }
-
 
         .play-button {
             background-color: rgba(206, 24, 0, 0.863);
@@ -164,7 +154,65 @@
         }
 
         #volume {
-            width: 410px;
+            width: 100%;
+            max-width: 410px;
+        }
+
+        /* Media Queries para tornar a página responsiva */
+        @media (max-width: 1024px) {
+            .logo-center {
+                max-width: 650px;
+                margin: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .navbar img {
+                margin-bottom: 10px;
+            }
+
+            .cards {
+                flex-direction: column;
+            }
+
+            .cardImagem {
+                margin: 10px 0;
+            }
+
+            .player-controls {
+                margin: 10px 0;
+            }
+
+            .baixeoapp {
+                max-width: 100%;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar a {
+                font-size: 16px;
+                margin: 5px 0;
+            }
+
+            .player-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content {
+                margin-top: 60px;
+                width: 95%;
+            }
+
+            .footer {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -181,7 +229,7 @@
             <button class="play-button">
                 <i class="fas fa-play"></i>
             </button>
-            <input id="volume"  type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
+            <input id="volume" type="range" class="volume-slider" min="0" max="1" step="0.1" value="1">
         </div>
         <img src="/BAIXEOAPP.png" class="baixeoapp">
     </div>
@@ -202,68 +250,45 @@
                 <img src="/EVENTO3.png" alt="Imagem 3" class="cardsimg">
             </div>
             <div class="cardImagem">
-            <img src="/EVENTO3.png" alt="Imagem 4" class="cardsimg">
+                <img src="/EVENTO3.png" alt="Imagem 4" class="cardsimg">
+            </div>
         </div>
-    </div>
 
-    <footer class="footer">
-        <p>
-            <a href="mailto:radionovasmoc@gmail.com">radionovasmoc@gmail.com</a> |
-            <a href="https://api.whatsapp.com/send?phone=5511999999999" target="_blank">WhatsApp</a> |
-            <a href="https://instagram.com/seu_usuario" target="_blank">Instagram</a>
-        </p>
-        <p>COPYRIGHT RÁDIO NOVA - ATOS DO ESPÍRITO SANTO</p>
-        <p>by vitorizar</p>
-    </footer>
+        <footer class="footer">
+            <p>
+                <a href="mailto:radionovasmoc@gmail.com">radionovasmoc@gmail.com</a> |
+                <a href="https://api.whatsapp.com/send?phone=5511999999999" target="_blank">WhatsApp</a> |
+                <a href="https://instagram.com/seu_usuario" target="_blank">Instagram</a>
+            </p>
+            <p>COPYRIGHT RÁDIO NOVA - ATOS DO ESPÍRITO SANTO</p>
+            <p>by vitorizar</p>
+        </footer>
 
-    <!-- Elemento de áudio escondido -->
-    <audio id="radio" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
+        <!-- Elemento de áudio escondido -->
+        <audio id="radio" src="https://s1.bycast.com.br:8029/live?1727531346212"></audio>
 
-    <script>
-        // Seleciona os elementos necessários
-        const playButton = document.querySelector('.play-button');
-        const audio = document.getElementById('radio');
-        const volumeSlider = document.querySelector('.volume-slider');
+        <script>
+            // Seleciona os elementos necessários
+            const playButton = document.querySelector('.play-button');
+            const audio = document.getElementById('radio');
+            const volumeSlider = document.querySelector('.volume-slider');
 
-        // Adiciona evento de clique no botão de play
-        playButton.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playButton.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                audio.pause();
-                playButton.innerHTML = '<i class="fas fa-play"></i>';
-            }
-        });
-
-        // Adiciona evento para controlar o volume
-        volumeSlider.addEventListener('input', () => {
-            audio.volume = volumeSlider.value;
-        });
-
-        // Carrossel
-        const carouselImages = document.querySelectorAll('.carousel img');
-        let currentIndex = 0;
-
-        function showImage(index) {
-            carouselImages.forEach((img, i) => {
-                img.classList.remove('active');
-                if (i === index) {
-                    img.classList.add('active');
+            // Adiciona evento de clique no botão de play
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    audio.pause();
+                    playButton.innerHTML = '<i class="fas fa-play"></i>';
                 }
             });
-        }
 
-        document.getElementById('prevBtn').addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselImages.length - 1;
-            showImage(currentIndex);
-        });
-
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            currentIndex = (currentIndex < carouselImages.length - 1) ? currentIndex + 1 : 0;
-            showImage(currentIndex);
-        });
-    </script>
+            // Adiciona evento para controlar o volume
+            volumeSlider.addEventListener('input', () => {
+                audio.volume = volumeSlider.value;
+            });
+        </script>
 </body>
 
 </html>
