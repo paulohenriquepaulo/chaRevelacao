@@ -56,7 +56,8 @@
         }
 
         .logo-center {
-            max-width: 850px;
+            max-width: 100%;
+            height: auto;
             margin: 40px;
         }
 
@@ -69,7 +70,7 @@
         }
 
         .cardImagem {
-            width: 65px;
+            width: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -77,8 +78,9 @@
         }
 
         .cardsimg {
-            width: 280px;
-            max-width: 100%;
+            width: 100%;
+            height: auto;
+            max-width: 300px;
         }
 
         .carousel-controls {
@@ -111,7 +113,7 @@
             background: #fff;
             margin: 50px auto;
             width: 100%;
-            max-width: 1500px;
+            max-width: 1000px;
             box-sizing: border-box;
             padding: 20px;
             border-radius: 30px;
@@ -161,8 +163,12 @@
         /* Media Queries para tornar a página responsiva */
         @media (max-width: 1024px) {
             .logo-center {
-                max-width: 650px;
+                max-width: 80%;
                 margin: 30px;
+            }
+
+            .cardsimg {
+                max-width: 250px;
             }
         }
 
